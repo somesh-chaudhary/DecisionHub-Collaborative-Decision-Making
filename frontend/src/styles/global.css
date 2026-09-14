@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
+@import './variables.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Animated Gradient Background */
+  background: radial-gradient(circle at 15% 50%, rgba(0, 245, 255, 0.05), transparent 25%),
+              radial-gradient(circle at 85% 30%, rgba(255, 0, 255, 0.05), transparent 25%),
+              var(--bg-primary);
+  background-size: 200% 200%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+h1 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: var(--font-h1);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: var(--font-h2);
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: var(--font-h3);
+  letter-spacing: -0.01em;
+}
+
+h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  text-shadow: var(--glow-cyan);
+}
+
+/* Base UI Classes */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 245, 255, 0.3);
+}
+
+/* Standardized Buttons Design System (5 Variants) */
+.btn-primary, .btn-secondary, .btn-outline, .btn-ghost, .btn-destructive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Icon to text spacing */
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: var(--radius-sm);
+  padding: 10px 24px;
+  font-size: var(--font-small);
+  height: 44px;
+  outline: none;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+/* Disabled states */
+.btn-primary:disabled, .btn-secondary:disabled, .btn-outline:disabled, .btn-ghost:disabled, .btn-destructive:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none !important;
+}
+
+/* Sizing Modifiers */
+.btn-sm {
+  height: 34px !important;
+  padding: 6px 14px !important;
+  font-size: var(--font-xs) !important;
+  border-radius: var(--radius-xs) !important;
+}
+
+.btn-lg {
+  height: 54px !important;
+  padding: 14px 32px !important;
+  font-size: var(--font-body) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+/* 1. Primary Button Variant (Cyan Glow) */
+.btn-primary {
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 245, 255, 0.2);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  left: 0;
+}
+
+.btn-primary:hover {
+  box-shadow: var(--glow-cyan);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+/* 2. Secondary Button Variant (Pink Glow) */
+.btn-secondary {
+  background: transparent;
+  color: var(--neon-pink);
+  border: 1px solid var(--neon-pink);
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 255, 0.2);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn-secondary:hover::before {
+  left: 0;
+}
+
+.btn-secondary:hover {
+  box-shadow: var(--glow-pink);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+/* 3. Outline Button Variant (Silver/Gray border) */
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+}
+
+.btn-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn-outline:hover::before {
+  left: 0;
+}
+
+.btn-outline:hover {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* 4. Ghost Button Variant (Transparent, hover overlay) */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--item-bg-hover);
+  color: var(--text-primary);
+}
+
+/* 5. Destructive Button Variant (Red warning glow) */
+.btn-destructive {
+  background: transparent;
+  color: #DC2626;
+  border: 1px solid #DC2626;
+}
+
+.btn-destructive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(220, 38, 38, 0.15);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn-destructive:hover::before {
+  left: 0;
+}
+
+.btn-destructive:hover {
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5), 0 0 20px rgba(220, 38, 38, 0.3);
+  color: var(--text-primary);
+  border-color: #EF4444;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navbar Links */
+.nav-link {
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-xl);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 245, 255, 0.2), rgba(255, 0, 255, 0.2));
+  transition: all 0.4s ease;
+  z-index: -1;
+  border-radius: var(--radius-xl);
+}
+
+.nav-link:hover::before, .nav-link.active::before {
+  left: 0;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.6);
+  box-shadow: inset 0 0 15px rgba(0, 245, 255, 0.3);
+}
+
+/* Premium Extra Styles */
+.input-premium {
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  outline: none;
+  font-size: var(--font-small);
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+.input-premium:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.input-premium-pro:focus {
+  border-color: var(--success);
+  box-shadow: 0 0 12px rgba(0, 255, 153, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.input-premium-con:focus {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.badge-premium {
+  padding: 6px 14px;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+}
+
+.badge-cyan {
+  background: rgba(0, 245, 255, 0.1);
+  color: var(--neon-cyan);
+  border-color: rgba(0, 245, 255, 0.25);
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.1);
+}
+
+.badge-pink {
+  background: rgba(255, 0, 255, 0.1);
+  color: var(--neon-pink);
+  border-color: rgba(255, 0, 255, 0.25);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.1);
+}
+
+.badge-success {
+  background: rgba(0, 255, 153, 0.1);
+  color: var(--success);
+  border-color: rgba(0, 255, 153, 0.25);
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.1);
+}
+
+.badge-purple {
+  background: rgba(138, 43, 226, 0.1);
+  color: var(--accent-purple);
+  border-color: rgba(138, 43, 226, 0.25);
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.1);
+}
+
+.badge-secondary {
+  background: var(--chip-bg);
+  color: var(--text-secondary);
+  border-color: var(--glass-border);
+}
+
+/* Pulse animation for FAB button */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 245, 255, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(0, 245, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 245, 255, 0);
+  }
+}
+
+.pulse-button {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Slide in animation for modal */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-animate {
+  animation: modalSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered card animation */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-animate {
+  animation: cardFadeIn 0.4s ease forwards;
+}
+
+/* Toast Animations */
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastFadeOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+.toast-enter {
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-exit {
+  animation: toastFadeOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
